@@ -18,7 +18,7 @@ def main(input_path):
     # Generate masks using the segmentor
     results = segmentor.mask_generator.generate(image)
     detections = sv.Detections.from_sam(sam_result=results)
-    annotated_image = sv.MaskAnnotator().annotate(scene=image.copy(), detections=detections)
+    annotated_image = sv.MaskAnnotator(color_lookup = sv.ColorLookup.INDEX).annotate(scene=image.copy(), detections=detections)
 
     # Filter the ellipses
     ellipse_df = ellipseFilter.filter_ellipses(detections)
